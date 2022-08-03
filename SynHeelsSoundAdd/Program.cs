@@ -45,6 +45,7 @@ namespace SynHeelsSoundAdd
             {
                 // skip invalid
                 if (armorGetter == null) continue;
+                if (armorGetter.BodyTemplate == null || !armorGetter.BodyTemplate.FirstPersonFlags.HasFlag(BipedObjectFlag.Feet)) continue; // only boots
                 //// check if hdthighheelshoes script
                 if (armorGetter.VirtualMachineAdapter == null) continue;
                 if (armorGetter.VirtualMachineAdapter.Scripts == null) continue;
