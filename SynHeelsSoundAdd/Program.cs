@@ -53,8 +53,21 @@ namespace SynHeelsSoundAdd
                 if (!armorGetter.VirtualMachineAdapter.Scripts.Any(sc => sc.Name.ToLowerInvariant() == "hdthighheelshoes")) continue;
                 //// check if armor addon has this heel sound
                 if (armorGetter.Armature == null) continue;
-                IFormLinkGetter<IArmorAddonGetter>? armorAddonReference = armorGetter.Armature.First();
-                if (armorAddonReference == null || !armorAddonReference.TryResolve(state.LinkCache, out var armorAddon)) continue;
+
+                // search boots armor addon
+                IArmorAddonGetter? armorAddon = null;
+                foreach (var aaFormlinkGetter in armorGetter.Armature)
+                {
+                    // skip all armor addons except boots
+                    if (!aaFormlinkGetter.TryResolve(state.LinkCache, out var aa)) continue;
+                    if (aa.BodyTemplate == null) continue;
+                    if (aa.BodyTemplate.FirstPersonFlags.HasFlag(BipedObjectFlag.Feet)) continue;
+
+                    armorAddon = aa;
+                    break;
+                }
+
+                if (armorAddon == null) continue; // boots armor addon not found
                 if (armorAddon.FootstepSound.FormKey == HighHeelSoundFormKey) continue; // already has the sound
 
                 Console.WriteLine($"Set heels sound for {armorGetter.EditorID}|{armorGetter.FormKey}");
