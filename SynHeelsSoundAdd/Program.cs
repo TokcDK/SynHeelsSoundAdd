@@ -49,7 +49,8 @@ namespace SynHeelsSoundAdd
             {
                 // skip invalid
                 if (armorGetter == null) continue;
-                if (armorGetter.BodyTemplate == null || !armorGetter.BodyTemplate.FirstPersonFlags.HasFlag(BipedObjectFlag.Feet)) continue; // only boots
+                if (armorGetter.BodyTemplate == null) continue;
+                if (!armorGetter.BodyTemplate.FirstPersonFlags.HasFlag(BipedObjectFlag.Feet)) continue; // only boots
                 //// option: skip armored boots
                 if (isOnlyClothing && (armorGetter.BodyTemplate.ArmorType != ArmorType.Clothing)) continue;
                 //// check if 'hdthighheelshoes' script
@@ -67,7 +68,7 @@ namespace SynHeelsSoundAdd
                     // skip all armor addons except boots
                     if (!aaFormlinkGetter.TryResolve(state.LinkCache, out var aa)) continue;
                     if (aa.BodyTemplate == null) continue;
-                    if (aa.BodyTemplate.FirstPersonFlags.HasFlag(BipedObjectFlag.Feet)) continue;
+                    if (!aa.BodyTemplate.FirstPersonFlags.HasFlag(BipedObjectFlag.Feet)) continue;
 
                     armorAddon = aa;
                     break;
