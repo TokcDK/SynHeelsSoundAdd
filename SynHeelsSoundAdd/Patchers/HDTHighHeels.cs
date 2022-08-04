@@ -24,23 +24,16 @@ namespace SynHeelsSoundAdd.Patchers
             return true;
         }
 
-        protected override bool CheckIfFound(out IArmorAddonGetter? armorAddon)
+        protected override bool IsValidArmor()
         {
-            armorAddon = null;
-
             if (Armor!.VirtualMachineAdapter == null) return false;
             if (Armor.VirtualMachineAdapter.Scripts == null) return false;
             if (Armor.VirtualMachineAdapter.Scripts.Count == 0) return false;
             if (!Armor.VirtualMachineAdapter.Scripts.Any(sc => sc.Name.ToLowerInvariant() == "hdthighheelshoes")) return false;
-            //// check if armor addon has this heel sound
-            if (Armor.Armature == null) return false;
-
-            // search boots armor addon
-            GetArmorAddon();
-            if (ArmorAddon == null) return false; // boots armor addon not found
-            if (ArmorAddon.FootstepSound.FormKey == Data!.HighHeelSoundFormKey) return false; // already has the sound
 
             return true;
         }
+
+        protected override bool IsValidArmorAddon() { return true; }
     }
 }

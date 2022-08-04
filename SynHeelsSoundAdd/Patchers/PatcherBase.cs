@@ -32,16 +32,20 @@ namespace SynHeelsSoundAdd.Patchers
 
             Armor = armor;
 
-            if (CheckIfFound(out IArmorAddonGetter? armorAddon))
-            {
-                if (ArmorAddon == null && armorAddon != null) ArmorAddon = armorAddon;
-                return true;
-            }
+            if (!IsValidArmor() || Armor.Armature == null) return false;
 
-            return false;
+            GetArmorAddon();
+
+            if (ArmorAddon == null
+                || !IsValidArmorAddon()
+                || ArmorAddon.FootstepSound.FormKey == Data!.HighHeelSoundFormKey) return false;
+
+            return true;
         }
 
-        protected abstract bool CheckIfFound(out IArmorAddonGetter? armorAddon);
+        protected abstract bool IsValidArmor();
+        protected abstract bool IsValidArmorAddon(); 
+
 
         protected void GetArmorAddon()
         {
@@ -59,12 +63,6 @@ namespace SynHeelsSoundAdd.Patchers
 
         public void AddSound()
         {
-            if (ArmorAddon == null)
-            {
-                Console.WriteLine($"'{Name}' returned True but Armor Addon is Null!");
-                return;
-            }
-
             var armorReportName = Armor == null ? $"'{ArmorAddon!.EditorID}|{ArmorAddon!.FormKey}'" : $"'{Armor!.EditorID}|{Armor!.FormKey}'";
             Console.WriteLine($"Set heels sound for {armorReportName} using '{Name}'");
             Data!.State!.PatchMod.ArmorAddons.GetOrAddAsOverride(ArmorAddon!).FootstepSound.FormKey = Data.HighHeelSoundFormKey;

@@ -12,18 +12,14 @@ namespace SynHeelsSoundAdd.Patchers
     {
         protected override string Name => "NIOHH patcher";
 
-        protected override bool CheckIfFound(out IArmorAddonGetter? armorAddon)
+        protected override bool IsValidArmor()
         {
-            armorAddon = null;
+            return true;
+        }
 
-            //// check if armor addon has this heel sound
-            if (Armor!.Armature == null) return false;
-
-            // search boots armor addon
-            GetArmorAddon();
-
-            if (ArmorAddon == null) return false; // boots armor addon not found
-            if (ArmorAddon.WorldModel == null) return false;
+        protected override bool IsValidArmorAddon()
+        {
+            if (ArmorAddon!.WorldModel == null) return false;
             if (ArmorAddon.WorldModel.Female == null) return false;
 
             var fileSubPath = ArmorAddon.WorldModel.Female.File;
