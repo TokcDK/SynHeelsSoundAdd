@@ -32,8 +32,55 @@ namespace SynHeelsSoundAdd
             HighHeelSoundFormKey = formKey;
 
             AddByHdtHighHeelScript(state);
+            AddByNIOHighHeelMesh(state);
 
             Console.WriteLine("Finished");
+        }
+
+        private static void AddByNIOHighHeelMesh(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
+        {
+            bool isOnlyClothing = PatchSettings.Value.IsAddForClothingOnly;
+            foreach (var armorGetter in state.LoadOrder.PriorityOrder.Armor().WinningOverrides())
+            {
+                // skip invalid
+                if (armorGetter == null) continue;
+                if (armorGetter.BodyTemplate == null) continue;
+                if (!armorGetter.BodyTemplate.FirstPersonFlags.HasFlag(BipedObjectFlag.Feet)) continue; // only boots
+                //// option: skip armored boots
+                if (isOnlyClothing && (armorGetter.BodyTemplate.ArmorType != ArmorType.Clothing)) continue;
+                //// check if armor addon has this heel sound
+                if (armorGetter.Armature == null) continue;
+
+                // search boots armor addon
+                IArmorAddonGetter? armorAddon = null;
+                foreach (var aaFormlinkGetter in armorGetter.Armature)
+                {
+                    // skip all armor addons except boots
+                    if (!aaFormlinkGetter.TryResolve(state.LinkCache, out var aa)) continue;
+                    if (aa.BodyTemplate == null) continue;
+                    if (!aa.BodyTemplate.FirstPersonFlags.HasFlag(BipedObjectFlag.Feet)) continue;
+
+                    armorAddon = aa;
+                    break;
+                }
+
+                if (armorAddon == null) continue; // boots armor addon not found
+                if (armorAddon.WorldModel==null) continue;
+                if (armorAddon.WorldModel.Female==null) continue;
+
+                var fileSubPath = armorAddon.WorldModel.Female.File;
+                if (string.IsNullOrWhiteSpace(fileSubPath)) continue;
+
+                var filePath = state.DataFolderPath +"\\meshes\\" + fileSubPath;
+                if (!File.Exists(filePath)) continue;
+
+                // just search string
+                var fileString = File.ReadAllText(filePath);
+                if (!fileString.Contains("[{\"name\":\"NPC\",\"pos\":[", StringComparison.InvariantCulture)) continue;
+
+                Console.WriteLine($"Set heels sound for {armorGetter.EditorID}|{armorGetter.FormKey}");
+                state.PatchMod.ArmorAddons.GetOrAddAsOverride(armorAddon).FootstepSound.FormKey = HighHeelSoundFormKey;
+            }
         }
 
         private static void AddByHdtHighHeelScript(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
