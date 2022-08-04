@@ -36,18 +36,7 @@ namespace SynHeelsSoundAdd.Patchers
             if (Armor.Armature == null) return false;
 
             // search boots armor addon
-            ArmorAddon = null;
-            foreach (var aaFormlinkGetter in Armor.Armature)
-            {
-                // skip all armor addons except boots
-                if (!aaFormlinkGetter.TryResolve(Data!.State!.LinkCache, out var aa)) return false;
-                if (aa.BodyTemplate == null) return false;
-                if (!aa.BodyTemplate.FirstPersonFlags.HasFlag(BipedObjectFlag.Feet)) return false;
-
-                ArmorAddon = aa;
-                break;
-            }
-
+            GetArmorAddon();
             if (ArmorAddon == null) return false; // boots armor addon not found
             if (ArmorAddon.FootstepSound.FormKey == Data!.HighHeelSoundFormKey) return false; // already has the sound
 

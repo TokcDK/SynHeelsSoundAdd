@@ -43,7 +43,21 @@ namespace SynHeelsSoundAdd.Patchers
 
         protected abstract bool CheckIfFound(out IArmorAddonGetter? armorAddon);
 
-        internal void AddSound()
+        protected void GetArmorAddon()
+        {
+            foreach (var aaFormlinkGetter in Armor!.Armature)
+            {
+                // skip all armor addons except boots
+                if (!aaFormlinkGetter.TryResolve(Data!.State!.LinkCache, out var aa)) continue;
+                if (aa.BodyTemplate == null) continue;
+                if (!aa.BodyTemplate.FirstPersonFlags.HasFlag(BipedObjectFlag.Feet)) continue;
+
+                ArmorAddon = aa;
+                break;
+            }
+        }
+
+        public void AddSound()
         {
             if (ArmorAddon == null)
             {
