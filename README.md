@@ -3,4 +3,5 @@ Synthesis patcher
 # SynHeelsSoundAdd
 Auto add highheels sound to valid boots for hdtHighheels and NIOHH mods
 
-Required to easy use this and other patchers: https://github.com/Mutagen-Modding/Synthesis
+Required patchers manager is [here](https://github.com/Mutagen-Modding/Synthesis). 
+Target required mod with sound is [here](https://www.loverslab.com/files/file/1795-heels-sound).
