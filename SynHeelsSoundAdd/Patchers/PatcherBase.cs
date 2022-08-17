@@ -32,7 +32,10 @@ namespace SynHeelsSoundAdd.Patchers
 
             Armor = armor;
 
-            if (!IsValidArmor() || Armor.Armature == null) return false;
+            if (!IsValidArmor() 
+                || Armor.Armature == null 
+                || (Armor.TemplateArmor!=null && !Armor.TemplateArmor.IsNull)) // all templated have same armor addon
+                return false;
 
             GetArmorAddon();
 

@@ -23,9 +23,9 @@ namespace SynHeelsSoundAdd
         public static void RunPatch(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
         {
             // get heels sound formkey
-            if (!FormKey.TryFactory("004527:Heels Sound.esm", out var hhSoundSetFformKey))
+            if (!PatchSettings.Value.FootstepSoundSet.TryResolve(state.LinkCache, out var footstepSoundSetFormKey))
             {
-                Console.WriteLine("Failed to get heels sound! Exit..");
+                Console.WriteLine($"Failed to get heels sound for {PatchSettings.Value.FootstepSoundSet.FormKey}! Missing mod?");
                 return;
             }
 
@@ -42,7 +42,7 @@ namespace SynHeelsSoundAdd
             // set patcher valid and using data
             foreach (var patcher in patchers)
                 if (patcher.SetIsValid(state))
-                    patcher.SetInputData(new PatcherData() { State = state, HighHeelSoundFormKey = hhSoundSetFformKey });
+                    patcher.SetInputData(new PatcherData() { State = state, HighHeelSoundFormKey = footstepSoundSetFormKey.FormKey });
 
             // check all boots with patchers
             foreach (var armorGetter in state.LoadOrder.PriorityOrder.Armor().WinningOverrides())
