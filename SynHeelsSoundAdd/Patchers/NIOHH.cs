@@ -29,10 +29,12 @@ namespace SynHeelsSoundAdd.Patchers
             if (!File.Exists(filePath)) return false;
 
             // just search string
-            var fileString = File.ReadAllText(filePath);
-            if (!fileString.Contains("[{\"name\":\"NPC\",\"pos\":[", StringComparison.InvariantCulture)) return false;
+            var nifFileString = File.ReadAllText(filePath);
 
-            return true;
+            foreach(var nifMarkerString in Program.PatchSettings.Value.NifMarkerStrings) 
+                if (!string.IsNullOrWhiteSpace(nifMarkerString) && nifFileString.Contains(nifMarkerString, StringComparison.InvariantCulture)) return true;
+
+            return false;
         }
     }
 }
