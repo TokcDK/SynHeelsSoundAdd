@@ -14,7 +14,7 @@ namespace SynHeelsSoundAdd
         [SynthesisTooltip("String markers to search in nif (for NIOHH)")]
         public HashSet<string> NifMarkerStrings = new()
         {
-            "{\\\"name\\\":\\\"NPC\\\",\\\"pos\\\":[\"",
+            "[{\"name\":\"NPC\",\"pos\":[",
             "HH_OFFSET"
         };
     }
