@@ -5,17 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SynHeelsSoundAdd.Patchers.NifExtraDataBased.Tools;
 
-namespace SynHeelsSoundAdd.Patchers
+namespace SynHeelsSoundAdd.Patchers.NifExtraDataBased
 {
-    internal class NIOHH : PatcherBase
+    internal class NifExtraDataReader : ReaderBase
     {
-        protected override string Name => "NIOHH patcher";
+        protected override string Name => "Nif extradata reader";
 
-        protected override bool IsValidArmor()
-        {
-            return true;
-        }
+        protected override bool IsValidArmor() { return true; }
 
         protected override bool IsValidArmorAddon()
         {
@@ -28,11 +26,7 @@ namespace SynHeelsSoundAdd.Patchers
             var filePath = Data!.State!.DataFolderPath + "\\meshes\\" + fileSubPath;
             if (!File.Exists(filePath)) return false;
 
-            // just search string
-            var nifFileString = File.ReadAllText(filePath);
-
-            foreach(var nifMarkerString in Program.PatchSettings.Value.NifMarkerStrings) 
-                if (!string.IsNullOrWhiteSpace(nifMarkerString) && nifFileString.Contains(nifMarkerString, StringComparison.InvariantCulture)) return true;
+            if (NiflyTools.IsFoundValidMarker(filePath)) return true;
 
             return false;
         }

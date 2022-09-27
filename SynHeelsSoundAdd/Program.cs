@@ -4,12 +4,14 @@ using Mutagen.Bethesda.Skyrim;
 using Mutagen.Bethesda.Synthesis;
 using Noggog;
 using SynHeelsSoundAdd.Patchers;
+using SynHeelsSoundAdd.Patchers.NifExtraDataBased;
 
 namespace SynHeelsSoundAdd
 {
     public class Program
     {
         public static Lazy<Settings> PatchSettings = null!;
+        internal static Mutagen.Bethesda.Plugins.Cache.ILinkCache<ISkyrimMod, ISkyrimModGetter>? LinkCache;
 
         public static async Task<int> Main(string[] args)
         {
@@ -29,14 +31,16 @@ namespace SynHeelsSoundAdd
                 return;
             }
 
+            LinkCache = state.LinkCache;
+
             // get clothing only option
             bool isOnlyClothing = PatchSettings.Value.IsAddForClothingOnly;
 
             // set patchers
-            var patchers = new List<PatcherBase>(2)
+            var patchers = new List<ReaderBase>(2)
             {
-                new HDTHighHeels(),
-                new NIOHH(),
+                new HDTHighHeelsReader(),
+                new NifExtraDataReader(),
             };
 
             // set patcher valid and using data

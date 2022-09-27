@@ -11,7 +11,7 @@ namespace SynHeelsSoundAdd.Patchers
         public FormKey HighHeelSoundFormKey;
     }
 
-    public abstract class PatcherBase
+    public abstract class ReaderBase
     {
         protected PatcherData? Data;
         bool IsValid = false;
