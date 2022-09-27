@@ -18,7 +18,9 @@ namespace SynHeelsSoundAdd.Patchers.NifExtraDataBased.Checkers
 
             Match match = Regex.Match(value.get(), @"\[{\""name\"":\s*\""NPC\"",\s*\""pos\"":\s*\[0,\s*0,\s*([0-9\.]+)\]}\]");
             if (!match.Success) return false; // check if success found json string for offset value
-            if (!float.TryParse(match.Groups[1].Value, out var offset)) return false;
+            if (Program.PatchSettings.Value.MinOffsetValue <= 0) return true; // dont need to check effect offset when it 0
+            
+            if (!float.TryParse(match.Groups[1].Value.Replace('.', ','), out var offset)) return false;
 
             if (offset < Program.PatchSettings.Value.MinOffsetValue) return false; // check if valid offset value
 

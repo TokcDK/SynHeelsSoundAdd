@@ -28,7 +28,7 @@ namespace SynHeelsSoundAdd.Patchers
             if (Armor.VirtualMachineAdapter.Scripts.Count == 0) return false;
             var hhScriptEntrieGetter = Armor.VirtualMachineAdapter.Scripts.FirstOrDefault(sc => string.Equals(sc.Name, "hdthighheelshoes", StringComparison.InvariantCultureIgnoreCase));
             if (hhScriptEntrieGetter == default) return false;
-            if (Program.PatchSettings.Value.MinOffsetValue <= 0) return true; // dont need to check effect offset
+            if (Program.PatchSettings.Value.MinOffsetValue <= 0) return true; // dont need to check effect offset when it 0
 
             // check effect offset
             if (hhScriptEntrieGetter.Properties.Count != 1) return false; // must be 1 hh spell propety
