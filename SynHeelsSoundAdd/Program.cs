@@ -11,6 +11,7 @@ namespace SynHeelsSoundAdd
     public class Program
     {
         public static Lazy<Settings> PatchSettings = null!;
+        internal static Mutagen.Bethesda.Plugins.Cache.ILinkCache<ISkyrimMod, ISkyrimModGetter>? LinkCache;
 
         public static async Task<int> Main(string[] args)
         {
@@ -29,6 +30,8 @@ namespace SynHeelsSoundAdd
                 Console.WriteLine($"Failed to get heels sound for {PatchSettings.Value.FootstepSoundSet.FormKey}! Missing mod?");
                 return;
             }
+
+            LinkCache = state.LinkCache;
 
             // get clothing only option
             bool isOnlyClothing = PatchSettings.Value.IsAddForClothingOnly;
