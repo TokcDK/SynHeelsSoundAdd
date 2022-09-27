@@ -4,6 +4,7 @@ using Mutagen.Bethesda.Skyrim;
 using Mutagen.Bethesda.Synthesis;
 using Noggog;
 using SynHeelsSoundAdd.Patchers;
+using SynHeelsSoundAdd.Patchers.NifExtraDataBased;
 
 namespace SynHeelsSoundAdd
 {
@@ -36,7 +37,7 @@ namespace SynHeelsSoundAdd
             var patchers = new List<ReaderBase>(2)
             {
                 new HDTHighHeelsReader(),
-                new NifExtraDataReadPatcher(),
+                new NifExtraDataReader(),
             };
 
             // set patcher valid and using data
