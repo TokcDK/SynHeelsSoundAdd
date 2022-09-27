@@ -33,10 +33,10 @@ namespace SynHeelsSoundAdd
             bool isOnlyClothing = PatchSettings.Value.IsAddForClothingOnly;
 
             // set patchers
-            var patchers = new List<PatcherBase>(2)
+            var patchers = new List<ReaderBase>(2)
             {
-                new HDTHighHeels(),
-                new NIOHH(),
+                new HDTHighHeelsReader(),
+                new NifExtraDataReadPatcher(),
             };
 
             // set patcher valid and using data

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SynHeelsSoundAdd.Patchers
 {
-    internal class HDTHighHeels : PatcherBase
+    internal class HDTHighHeelsReader : ReaderBase
     {
         protected override string Name => "HDTHighHeels patcher";
 
