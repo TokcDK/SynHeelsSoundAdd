@@ -11,11 +11,7 @@ namespace SynHeelsSoundAdd
         public bool IsAddForClothingOnly = false;
         [SynthesisTooltip("Footsteps sound set. Default is set set for Heels Sound.esm but you can set it to any.")]
         public FormLink<IFootstepSetGetter> FootstepSoundSet = FormKey.Factory("004527:Heels Sound.esm");
-        [SynthesisTooltip("String markers to search in nif (for NIOHH)")]
-        public HashSet<string> NifMarkerStrings = new()
-        {
-            "[{\"name\":\"NPC\",\"pos\":[",
-            "HH_OFFSET"
-        };
+        [SynthesisTooltip("Minimal valid offset value to add heels sound. 0 = any")]
+        public float MinOffsetValue = 0;
     }
 }
