@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using nifly;
 
 namespace SynHeelsSoundAdd.Patchers
 {
@@ -28,11 +29,42 @@ namespace SynHeelsSoundAdd.Patchers
             var filePath = Data!.State!.DataFolderPath + "\\meshes\\" + fileSubPath;
             if (!File.Exists(filePath)) return false;
 
-            // just search string
-            var nifFileString = File.ReadAllText(filePath);
+            if (!IsFoundValidMarker(filePath)) return false;
 
-            foreach(var nifMarkerString in Program.PatchSettings.Value.NifMarkerStrings) 
-                if (!string.IsNullOrWhiteSpace(nifMarkerString) && nifFileString.Contains(nifMarkerString, StringComparison.InvariantCulture)) return true;
+            return true;
+        }
+
+        // examples of using: https://github.com/SteveTownsend/AllGUDMeshGen
+        private static bool IsFoundValidMarker(string filePath)
+        {
+            var loadOptions = new NifLoadOptions { isTerrain = false };
+            var nifFile = new NifFile();
+
+            var loadResult = nifFile.Load(filePath, loadOptions);
+            if (loadResult != 0) return false; // nif cant be loaded
+
+            var blockCache = new niflycpp.BlockCache(nifFile.GetHeader());
+            var shapes = nifFile.GetShapes();
+            foreach (var shape in shapes)
+            {
+                foreach (var extraDataRef in shape.extraDataRefs.GetRefs())
+                {
+                    using (extraDataRef)
+                    {
+                        if (extraDataRef.IsEmpty()) continue;
+
+                        var floatExtraData = blockCache.EditableBlockById<NiFloatExtraData>(extraDataRef.index);
+                        if (floatExtraData == null) continue;
+
+                        using var name = floatExtraData.name;
+
+                        if (name.get() != "HH_OFFSET") continue; // check if HH_OFFSET
+                        if (floatExtraData.floatData < 4) return false; // check if valid offset value
+
+                        return true;
+                    }
+                }
+            }
 
             return false;
         }
