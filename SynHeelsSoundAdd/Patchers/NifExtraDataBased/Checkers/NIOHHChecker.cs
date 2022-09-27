@@ -20,7 +20,7 @@ namespace SynHeelsSoundAdd.Patchers.NifExtraDataBased.Checkers
             if (!match.Success) return false; // check if success found json string for offset value
             if (!float.TryParse(match.Groups[1].Value, out var offset)) return false;
 
-            if (offset < 4.0) return false; // check if valid offset value
+            if (offset < Program.PatchSettings.Value.MinOffsetValue) return false; // check if valid offset value
 
             return true;
         }

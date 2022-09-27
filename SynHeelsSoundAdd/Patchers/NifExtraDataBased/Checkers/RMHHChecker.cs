@@ -13,7 +13,7 @@ namespace SynHeelsSoundAdd.Patchers.NifExtraDataBased.Checkers
             using var name = floatExtraData.name;
 
             if (name.get() != "HH_OFFSET") return false; // check if HH_OFFSET
-            if (floatExtraData.floatData < 4.0) return false; // check if valid offset value
+            if (floatExtraData.floatData < Program.PatchSettings.Value.MinOffsetValue) return false; // check if valid offset value
 
             return true;
         }
