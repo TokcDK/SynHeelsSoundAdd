@@ -1,11 +1,5 @@
-﻿using Mutagen.Bethesda;
-using Mutagen.Bethesda.Skyrim;
+﻿using Mutagen.Bethesda.Skyrim;
 using Mutagen.Bethesda.Synthesis;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SynHeelsSoundAdd.Patchers
 {
@@ -29,7 +23,7 @@ namespace SynHeelsSoundAdd.Patchers
             if (Armor!.VirtualMachineAdapter == null) return false;
             if (Armor.VirtualMachineAdapter.Scripts == null) return false;
             if (Armor.VirtualMachineAdapter.Scripts.Count == 0) return false;
-            if (!Armor.VirtualMachineAdapter.Scripts.Any(sc => sc.Name.ToLowerInvariant() == "hdthighheelshoes")) return false;
+            if (!Armor.VirtualMachineAdapter.Scripts.Any(sc => string.Equals(sc.Name, "hdthighheelshoes", StringComparison.InvariantCultureIgnoreCase))) return false;
 
             return true;
         }
