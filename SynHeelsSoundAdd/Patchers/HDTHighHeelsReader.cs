@@ -5,7 +5,7 @@ namespace SynHeelsSoundAdd.Patchers
 {
     internal class HDTHighHeelsReader : ReaderBase
     {
-        protected override string Name => "HDTHighHeels patcher";
+        protected override string Name => "HDTHighHeels reader";
 
         protected override bool MeValid(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
         {

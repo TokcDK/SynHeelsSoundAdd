@@ -11,7 +11,7 @@ namespace SynHeelsSoundAdd.Patchers.NifExtraDataBased
 {
     internal class NifExtraDataReader : ReaderBase
     {
-        protected override string Name => "NIOHH patcher";
+        protected override string Name => "Nif extradata reader";
 
         protected override bool IsValidArmor() { return true; }
 
