@@ -39,7 +39,7 @@ namespace SynHeelsSoundAdd
             // set types
             var targetTypes = new List<TargetTypeBase>(2)
             {
-                new EspScript(),
+                new HdtHighHeelScript(),
                 new NifFile(),
             };
 

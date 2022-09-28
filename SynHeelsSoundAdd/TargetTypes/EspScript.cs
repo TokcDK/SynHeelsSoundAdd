@@ -5,9 +5,9 @@ using Mutagen.Bethesda.Synthesis;
 
 namespace SynHeelsSoundAdd.TargetTypes
 {
-    internal class EspScript : TargetTypeBase
+    internal class HdtHighHeelScript : TargetTypeBase
     {
-        protected override string Name => "HDTHighHeels reader";
+        protected override string Name => "HdtHighHeel reader";
 
         protected override bool IsValidType(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
         {
