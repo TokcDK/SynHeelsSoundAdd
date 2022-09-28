@@ -31,7 +31,7 @@ namespace SynHeelsSoundAdd
                 return;
             }
 
-            LinkCache = state.LinkCache;
+            LinkCache = state.LinkCache; // set cache for use in other places
 
             // get clothing only option
             bool isOnlyClothing = PatchSettings.Value.IsAddForClothingOnly;
