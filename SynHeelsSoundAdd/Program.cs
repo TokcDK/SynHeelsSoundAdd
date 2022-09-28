@@ -49,6 +49,7 @@ namespace SynHeelsSoundAdd
                     targetType.SetInputData(new TargetTypeData() { State = state, HighHeelSoundFormKey = footstepSoundSetFormKey.FormKey });
 
             // check all boots with types
+            int patchedCount = 0;
             foreach (var armorGetter in state.LoadOrder.PriorityOrder.Armor().WinningOverrides())
             {
                 // skip invalid
@@ -62,12 +63,13 @@ namespace SynHeelsSoundAdd
                 {
                     if (!targetType.IsFound(armorGetter)) continue;
 
+                    patchedCount++;
                     targetType.AddSound();
                     break; // sound added
                 }
             }
 
-            Console.WriteLine("Finished");
+            Console.WriteLine($"Finished. Added HH sound for {patchedCount} boots.");
         }
     }
 }
