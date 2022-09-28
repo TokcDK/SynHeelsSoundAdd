@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using nifly;
-using SynHeelsSoundAdd.Types.NifFileType.ExtraDataTargets;
+using SynHeelsSoundAdd.TargetTypes.NifFileTargetType.ExtraDataTypes;
 using static nifly.niflycpp;
 
-namespace SynHeelsSoundAdd.Types.NifFileType.Tools
+namespace SynHeelsSoundAdd.TargetTypes.NifFileTargetType.Tools
 {
     public class NiflyTools
     {
-        static readonly List<IExtraDataTargetBase> CheckersList = new()
+        static readonly List<IExtraDataTypeBase> CheckersList = new()
         {
-            new NIOHHExtraData(),
-            new RMHHExtraData(),
+            new NIOHHExtraDataType(),
+            new RMHHExtraDataType(),
         };
 
         // examples of using: https://github.com/SteveTownsend/AllGUDMeshGen

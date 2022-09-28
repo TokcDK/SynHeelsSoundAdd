@@ -3,8 +3,8 @@ using Mutagen.Bethesda.Plugins;
 using Mutagen.Bethesda.Skyrim;
 using Mutagen.Bethesda.Synthesis;
 using Noggog;
-using SynHeelsSoundAdd.Types;
-using SynHeelsSoundAdd.Types.NifFileType;
+using SynHeelsSoundAdd.TargetTypes;
+using SynHeelsSoundAdd.TargetTypes.NifFileTargetType;
 
 namespace SynHeelsSoundAdd
 {
@@ -37,16 +37,16 @@ namespace SynHeelsSoundAdd
             bool isOnlyClothing = PatchSettings.Value.IsAddForClothingOnly;
 
             // set types
-            var types = new List<TypeBase>(2)
+            var targetTypes = new List<TargetTypeBase>(2)
             {
-                new ScriptType(),
-                new NifFileType(),
+                new ScriptTargetType(),
+                new NifFileTargetType(),
             };
 
             // set type valid and using data
-            foreach (var type in types)
-                if (type.SetIsValid(state))
-                    type.SetInputData(new TypeData() { State = state, HighHeelSoundFormKey = footstepSoundSetFormKey.FormKey });
+            foreach (var targetType in targetTypes)
+                if (targetType.SetIsValid(state))
+                    targetType.SetInputData(new TargetTypeData() { State = state, HighHeelSoundFormKey = footstepSoundSetFormKey.FormKey });
 
             // check all boots with types
             foreach (var armorGetter in state.LoadOrder.PriorityOrder.Armor().WinningOverrides())
@@ -58,11 +58,11 @@ namespace SynHeelsSoundAdd
                 //// option: skip armored boots
                 if (isOnlyClothing && (armorGetter.BodyTemplate.ArmorType != ArmorType.Clothing)) continue;
 
-                foreach (var type in types)
+                foreach (var targetType in targetTypes)
                 {
-                    if (type.IsFound(armorGetter))
+                    if (targetType.IsFound(armorGetter))
                     {
-                        type.AddSound();
+                        targetType.AddSound();
                         break; // sound added
                     }
                 }

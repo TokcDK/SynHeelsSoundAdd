@@ -1,9 +1,9 @@
 ﻿using nifly;
 using static nifly.niflycpp;
 
-namespace SynHeelsSoundAdd.Types.NifFileType.ExtraDataTargets
+namespace SynHeelsSoundAdd.TargetTypes.NifFileTargetType.ExtraDataTypes
 {
-    public interface IExtraDataTargetBase
+    public interface IExtraDataTypeBase
     {
         public bool IsValid(NiBlockRefNiExtraData extraDataRef, BlockCache blockCache);
     }

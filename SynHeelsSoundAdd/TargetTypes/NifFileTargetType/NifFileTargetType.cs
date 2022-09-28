@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SynHeelsSoundAdd.Types.NifFileType.Tools;
+using SynHeelsSoundAdd.TargetTypes.NifFileTargetType.Tools;
 
-namespace SynHeelsSoundAdd.Types.NifFileType
+namespace SynHeelsSoundAdd.TargetTypes.NifFileTargetType
 {
-    internal class NifFileType : TypeBase
+    internal class NifFileTargetType : TargetTypeBase
     {
         protected override string Name => "Nif extradata reader";
 
