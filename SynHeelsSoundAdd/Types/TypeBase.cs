@@ -5,7 +5,7 @@ using Mutagen.Bethesda.Synthesis;
 
 namespace SynHeelsSoundAdd.Types
 {
-    public class PatcherData
+    public class TypeData
     {
         public IPatcherState<ISkyrimMod, ISkyrimModGetter>? State;
         public FormKey HighHeelSoundFormKey;
@@ -13,14 +13,14 @@ namespace SynHeelsSoundAdd.Types
 
     public abstract class TypeBase
     {
-        protected PatcherData? Data;
+        protected TypeData? Data;
         bool IsValid = false;
 
-        public bool SetIsValid(IPatcherState<ISkyrimMod, ISkyrimModGetter> state) { return IsValid = MeValid(state); }
+        public bool SetIsValid(IPatcherState<ISkyrimMod, ISkyrimModGetter> state) { return IsValid = IsValidType(state); }
 
-        protected virtual bool MeValid(IPatcherState<ISkyrimMod, ISkyrimModGetter> state) { return true; }
+        protected virtual bool IsValidType(IPatcherState<ISkyrimMod, ISkyrimModGetter> state) { return true; }
 
-        public void SetInputData(PatcherData data) { Data = data; }
+        public void SetInputData(TypeData data) { Data = data; }
 
         protected IArmorAddonGetter? ArmorAddon;
         protected IArmorGetter? Armor;

@@ -9,15 +9,12 @@ namespace SynHeelsSoundAdd.Types
     {
         protected override string Name => "HDTHighHeels reader";
 
-        protected override bool MeValid(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
+        protected override bool IsValidType(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
         {
-            if (!state.LoadOrder.ContainsKey("hdtHighHeel.esm"))
-            {
-                Console.WriteLine("'hdtHighHeel.esm' doeasnt exist! Skip..");
-                return false;
-            }
+            if (state.LoadOrder.ContainsKey("hdtHighHeel.esm")) return true;
 
-            return true;
+            Console.WriteLine("'hdtHighHeel.esm' doeasnt exist! Exit..");
+            return false;            
         }
 
         protected override bool IsValidArmor()
