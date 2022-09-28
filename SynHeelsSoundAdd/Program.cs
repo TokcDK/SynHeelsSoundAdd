@@ -60,11 +60,10 @@ namespace SynHeelsSoundAdd
 
                 foreach (var targetType in targetTypes)
                 {
-                    if (targetType.IsFound(armorGetter))
-                    {
-                        targetType.AddSound();
-                        break; // sound added
-                    }
+                    if (!targetType.IsFound(armorGetter)) continue;
+
+                    targetType.AddSound();
+                    break; // sound added
                 }
             }
 
