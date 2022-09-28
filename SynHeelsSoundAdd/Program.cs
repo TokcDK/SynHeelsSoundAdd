@@ -3,8 +3,8 @@ using Mutagen.Bethesda.Plugins;
 using Mutagen.Bethesda.Skyrim;
 using Mutagen.Bethesda.Synthesis;
 using Noggog;
-using SynHeelsSoundAdd.Patchers;
-using SynHeelsSoundAdd.Patchers.NifExtraDataBased;
+using SynHeelsSoundAdd.Types;
+using SynHeelsSoundAdd.Types.NifFileType;
 
 namespace SynHeelsSoundAdd
 {
@@ -37,10 +37,10 @@ namespace SynHeelsSoundAdd
             bool isOnlyClothing = PatchSettings.Value.IsAddForClothingOnly;
 
             // set patchers
-            var patchers = new List<ReaderBase>(2)
+            var patchers = new List<TypeBase>(2)
             {
-                new HDTHighHeelsReader(),
-                new NifExtraDataReader(),
+                new ScriptType(),
+                new NifFileType(),
             };
 
             // set patcher valid and using data

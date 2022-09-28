@@ -3,7 +3,7 @@ using Mutagen.Bethesda.Plugins;
 using Mutagen.Bethesda.Skyrim;
 using Mutagen.Bethesda.Synthesis;
 
-namespace SynHeelsSoundAdd.Patchers
+namespace SynHeelsSoundAdd.Types
 {
     public class PatcherData
     {
@@ -11,7 +11,7 @@ namespace SynHeelsSoundAdd.Patchers
         public FormKey HighHeelSoundFormKey;
     }
 
-    public abstract class ReaderBase
+    public abstract class TypeBase
     {
         protected PatcherData? Data;
         bool IsValid = false;

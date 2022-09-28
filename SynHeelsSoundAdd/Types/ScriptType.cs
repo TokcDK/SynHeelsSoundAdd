@@ -3,9 +3,9 @@ using Mutagen.Bethesda.Plugins;
 using Mutagen.Bethesda.Skyrim;
 using Mutagen.Bethesda.Synthesis;
 
-namespace SynHeelsSoundAdd.Patchers
+namespace SynHeelsSoundAdd.Types
 {
-    internal class HDTHighHeelsReader : ReaderBase
+    internal class ScriptType : TypeBase
     {
         protected override string Name => "HDTHighHeels reader";
 

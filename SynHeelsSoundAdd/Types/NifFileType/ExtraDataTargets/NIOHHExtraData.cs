@@ -2,9 +2,9 @@
 using static nifly.niflycpp;
 using System.Text.RegularExpressions;
 
-namespace SynHeelsSoundAdd.Patchers.NifExtraDataBased.Checkers
+namespace SynHeelsSoundAdd.Types.NifFileType.ExtraDataTargets
 {
-    public class NIOHHChecker : INifExtraDataChecker
+    public class NIOHHExtraData : IExtraDataTargetBase
     {
         public bool IsValid(NiBlockRefNiExtraData extraDataRef, BlockCache blockCache)
         {
