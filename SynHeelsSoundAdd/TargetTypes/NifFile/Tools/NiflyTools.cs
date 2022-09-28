@@ -4,23 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using nifly;
-using SynHeelsSoundAdd.Patchers.NifExtraDataBased.Checkers;
+using SynHeelsSoundAdd.TargetTypes.NifFileTargetType.ExtraDataTypes;
 using static nifly.niflycpp;
 
-namespace SynHeelsSoundAdd.Patchers.NifExtraDataBased.Tools
+namespace SynHeelsSoundAdd.TargetTypes.NifFileTargetType.Tools
 {
     public class NiflyTools
     {
-        static readonly List<INifExtraDataChecker> CheckersList = new()
+        static readonly List<IExtraDataTypeBase> CheckersList = new()
         {
-            new NIOHHChecker(),
-            new RMHHChecker(),
+            new NIOHH(),
+            new RMHH(),
         };
 
         // examples of using: https://github.com/SteveTownsend/AllGUDMeshGen
         public static bool IsFoundValidMarker(string filePath)
         {
-            var nifFile = new NifFile();
+            var nifFile = new nifly.NifFile();
             var loadResult = nifFile.Load(filePath, new NifLoadOptions { isTerrain = false });
             if (loadResult != 0) return false; // nif cant be loaded
 

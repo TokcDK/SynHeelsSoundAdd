@@ -3,21 +3,18 @@ using Mutagen.Bethesda.Plugins;
 using Mutagen.Bethesda.Skyrim;
 using Mutagen.Bethesda.Synthesis;
 
-namespace SynHeelsSoundAdd.Patchers
+namespace SynHeelsSoundAdd.TargetTypes
 {
-    internal class HDTHighHeelsReader : ReaderBase
+    internal class HdtHighHeelScript : TargetTypeBase
     {
-        protected override string Name => "HDTHighHeels reader";
+        protected override string Name => "HdtHighHeel reader";
 
-        protected override bool MeValid(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
+        protected override bool IsValidType(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
         {
-            if (!state.LoadOrder.ContainsKey("hdtHighHeel.esm"))
-            {
-                Console.WriteLine("'hdtHighHeel.esm' doeasnt exist! Skip..");
-                return false;
-            }
+            if (state.LoadOrder.ContainsKey("hdtHighHeel.esm")) return true;
 
-            return true;
+            Console.WriteLine("'hdtHighHeel.esm' doeasnt exist! Exit..");
+            return false;            
         }
 
         protected override bool IsValidArmor()

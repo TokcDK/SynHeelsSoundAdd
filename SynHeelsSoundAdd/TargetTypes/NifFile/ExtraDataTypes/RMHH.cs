@@ -1,9 +1,9 @@
 ﻿using nifly;
 using static nifly.niflycpp;
 
-namespace SynHeelsSoundAdd.Patchers.NifExtraDataBased.Checkers
+namespace SynHeelsSoundAdd.TargetTypes.NifFileTargetType.ExtraDataTypes
 {
-    public class RMHHChecker : INifExtraDataChecker
+    public class RMHH : IExtraDataTypeBase
     {
         public bool IsValid(NiBlockRefNiExtraData extraDataRef, BlockCache blockCache)
         {
