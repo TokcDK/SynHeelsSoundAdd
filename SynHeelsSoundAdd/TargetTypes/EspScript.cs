@@ -5,7 +5,7 @@ using Mutagen.Bethesda.Synthesis;
 
 namespace SynHeelsSoundAdd.TargetTypes
 {
-    internal class ScriptTargetType : TargetTypeBase
+    internal class EspScript : TargetTypeBase
     {
         protected override string Name => "HDTHighHeels reader";
 

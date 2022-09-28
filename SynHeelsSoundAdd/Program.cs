@@ -39,8 +39,8 @@ namespace SynHeelsSoundAdd
             // set types
             var targetTypes = new List<TargetTypeBase>(2)
             {
-                new ScriptTargetType(),
-                new NifFileTargetType(),
+                new EspScript(),
+                new NifFile(),
             };
 
             // set type valid and using data

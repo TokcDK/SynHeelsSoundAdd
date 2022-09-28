@@ -3,7 +3,7 @@ using static nifly.niflycpp;
 
 namespace SynHeelsSoundAdd.TargetTypes.NifFileTargetType.ExtraDataTypes
 {
-    public class RMHHExtraDataType : IExtraDataTypeBase
+    public class RMHH : IExtraDataTypeBase
     {
         public bool IsValid(NiBlockRefNiExtraData extraDataRef, BlockCache blockCache)
         {

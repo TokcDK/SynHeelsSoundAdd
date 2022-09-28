@@ -9,7 +9,7 @@ using SynHeelsSoundAdd.TargetTypes.NifFileTargetType.Tools;
 
 namespace SynHeelsSoundAdd.TargetTypes.NifFileTargetType
 {
-    internal class NifFileTargetType : TargetTypeBase
+    internal class NifFile : TargetTypeBase
     {
         protected override string Name => "Nif extradata reader";
 

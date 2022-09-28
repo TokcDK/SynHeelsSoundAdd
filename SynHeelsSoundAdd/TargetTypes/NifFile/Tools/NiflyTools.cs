@@ -13,8 +13,8 @@ namespace SynHeelsSoundAdd.TargetTypes.NifFileTargetType.Tools
     {
         static readonly List<IExtraDataTypeBase> CheckersList = new()
         {
-            new NIOHHExtraDataType(),
-            new RMHHExtraDataType(),
+            new NIOHH(),
+            new RMHH(),
         };
 
         // examples of using: https://github.com/SteveTownsend/AllGUDMeshGen

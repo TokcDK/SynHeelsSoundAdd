@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace SynHeelsSoundAdd.TargetTypes.NifFileTargetType.ExtraDataTypes
 {
-    public class NIOHHExtraDataType : IExtraDataTypeBase
+    public class NIOHH : IExtraDataTypeBase
     {
         public bool IsValid(NiBlockRefNiExtraData extraDataRef, BlockCache blockCache)
         {
