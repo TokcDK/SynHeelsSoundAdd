@@ -5,5 +5,11 @@
   "LongDescription": "Adds high heels sound to all found and valid boots.\nMod can be downloaded here:\nSkyrim LE/SE: https://www.loverslab.com/files/file/1795-heels-sound/\nSkyrim SE: https://www.nexusmods.com/skyrimspecialedition/mods/62502\n\r\nBUT you can set any sound in Settings.\n\nCurrently adds sounds for all boots using 'HDT HighHeels System' mod: https://www.google.com/search?q=HDT+HighHeels+System and for boots with NIOHH mod data, NIOHH link: https://www.google.com/search?q=NiOverride+High+Heels+-+NIOVHH",
   "PreferredAutoVersioning": "Default",
   "RequiredMods": [],
-  "TargetedReleases": []
+  "TargetedReleases": [
+    "SkyrimLE",
+    "SkyrimSE",
+    "SkyrimVR",
+    "EnderalLE",
+    "EnderalSE"
+  ]
 }

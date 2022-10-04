@@ -3,24 +3,24 @@ using Mutagen.Bethesda.Plugins;
 using Mutagen.Bethesda.Skyrim;
 using Mutagen.Bethesda.Synthesis;
 
-namespace SynHeelsSoundAdd.Patchers
+namespace SynHeelsSoundAdd.TargetTypes
 {
-    public class PatcherData
+    public class TargetTypeData
     {
         public IPatcherState<ISkyrimMod, ISkyrimModGetter>? State;
         public FormKey HighHeelSoundFormKey;
     }
 
-    public abstract class PatcherBase
+    public abstract class TargetTypeBase
     {
-        protected PatcherData? Data;
+        protected TargetTypeData? Data;
         bool IsValid = false;
 
-        public bool SetIsValid(IPatcherState<ISkyrimMod, ISkyrimModGetter> state) { return IsValid = MeValid(state); }
+        public bool SetIsValid(IPatcherState<ISkyrimMod, ISkyrimModGetter> state) { return IsValid = IsValidType(state); }
 
-        protected virtual bool MeValid(IPatcherState<ISkyrimMod, ISkyrimModGetter> state) { return true; }
+        protected virtual bool IsValidType(IPatcherState<ISkyrimMod, ISkyrimModGetter> state) { return true; }
 
-        public void SetInputData(PatcherData data) { Data = data; }
+        public void SetInputData(TargetTypeData data) { Data = data; }
 
         protected IArmorAddonGetter? ArmorAddon;
         protected IArmorGetter? Armor;
